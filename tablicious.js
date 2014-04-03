@@ -1,43 +1,46 @@
 window.onload = function init() {
-    var tabContainer = document.getElementById('tabContainer');
+    var tabContainer = document.getElementById('tabsContainer');
     var tabContent = document.getElementById('tabsContent');
     var currentTab = document.getElementById('tabHeader_1');
 
-    var tabId = currentTab.id.split('_')[1];
-    currentTab.parentNode.setAttribute('data-active-tab', tabId);
-    currentTab.setAttribute('class', 'tabActiveHeader');
+    var activePageTabId = getTabId( currentTab );
+    setActiveTab(activePageTabId);
 
     var pages = tabContent.getElementsByTagName('div');
 
     for (var i = 1; i < pages.length; i++) {
-      pages.item(i).style.display = 'none';
-    };
-
-    var tabs = tabContainer.getElementsByTagName('li');
-        for (var i = 0; i < tabs.length; i++) {
-          tabs[i].onclick = displayPage;
-        }
+        hideInactiveTab(getTabId(pages.item(i)));
     }
 
-function hideActiveTab(tabId) {
-    document.getElementById('tabHeader_' + tabId).removeAttribute('class');
-    document.getElementById('tabpage_' + tabId).style.display = 'none';
+    var tabs = tabContainer.getElementsByTagName('li');
+    for (var i = 0; i < tabs.length; i++) {
+      tabs[i].onclick = displayPage;
+    }
+}
+
+function hideInactiveTab(tabId) {
+    document.getElementById('tabHeader_' + tabId).setAttribute('class', 'tabInactiveHeader');
+    document.getElementById('tabpage_' + tabId).setAttribute('class', 'tabInactivePage');
 }
 
 function setActiveTab(tabId) {
     var tab = getTabElementById(tabId);
     tab.setAttribute('class', 'tabActiveHeader');
 
-    document.getElementById('tabpage_' + tabId).style.display = 'block';
+    document.getElementById('tabpage_' + tabId).setAttribute('class', 'tabActivePage');
     tab.parentNode.setAttribute('data-active-tab', tabId);
 }
 
 function displayPage() {
     var activeTabId = this.parentNode.getAttribute('data-active-tab');
-    hideActiveTab(activeTabId);
+    hideInactiveTab(activeTabId);
 
-    var tabId = this.id.split('_')[1];
+    var tabId = getTabId(this);
     setActiveTab(tabId);
+}
+
+function getTabId(tabElement){
+    return tabElement.id.split('_')[1];
 }
 
 function getTabElementById(tabId){
