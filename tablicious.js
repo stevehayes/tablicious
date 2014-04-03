@@ -1,48 +1,78 @@
-window.onload = function init() {
-    var tabContainer = document.getElementById('tabs');
-    var tabContent = document.getElementById('tabsContent');
-    var currentTab = document.getElementById('tabHeader_1');
+var tablicious = function (options){
+    var opts = options || {};
+    var tabCssClasses = opts.tabCssClasses || {};
+    var tabHeaderContainerId = opts.tabHeaderContainerId || 'tabs';
+    var tabContentContainerId = opts.tabContentContainerId || 'tabsContent';
+    var tabHeaderPrefix = opts.tabHeaderPrefix || 'tabHeader';
+    var tabPagePrefix = opts.tabPagePrefix || 'tabpage';
+    var initialStartingTabNumber = opts.initialStartingTabNumber || 1;
 
-    var activePageTabId = getTabId( currentTab );
-    setActiveTab(activePageTabId);
+    tabCssClasses.inactiveHeader = tabCssClasses.inactiveHeader || 'tabInactiveHeader';
+    tabCssClasses.inactivePage = tabCssClasses.inactivePage || 'tabInactivePage';
+    tabCssClasses.activeHeader = tabCssClasses.activeHeader || 'tabActiveHeader';
+    tabCssClasses.activePage = tabCssClasses.activePage || 'tabActivePage';
 
-    var pages = tabContent.getElementsByTagName('div');
+    window.onload = function init() {
 
-    for (var i = 1; i < pages.length; i++) {
-        hideInactiveTab(getTabId(pages.item(i)));
+        var tabContent = document.getElementById(tabContentContainerId);
+        var pages = tabContent.getElementsByTagName('div');
+
+        for (var i = 0; i < pages.length; i++) {
+            hideInactiveTab(getTabNumber(pages.item(i)));
+        }
+        setActiveTab(initialStartingTabNumber);
+
+        actOnAllTabs(function(tabs, currentIndex) {
+            tabs[currentIndex].onclick = displayPage;
+        });
     }
 
-    var tabs = tabContainer.getElementsByTagName('li');
-    for (var i = 0; i < tabs.length; i++) {
-      tabs[i].onclick = displayPage;
-    }
-}
+    var actOnAllTabs = function( action ){
+        var tabContainer = document.getElementById(tabHeaderContainerId);
+        var tabs = tabContainer.getElementsByTagName('li');
+        for (var i = 0; i < tabs.length; i++) {
+            action(tabs, i);
+        }
+    };
 
-function hideInactiveTab(tabId) {
-    document.getElementById('tabHeader_' + tabId).setAttribute('class', 'tabInactiveHeader');
-    document.getElementById('tabpage_' + tabId).setAttribute('class', 'tabInactivePage');
-}
+    var hideInactiveTab = function (tabNumber) {
+        document.getElementById(getTabElementId(tabHeaderPrefix,tabNumber)).setAttribute('class', tabCssClasses.inactiveHeader);
+        document.getElementById(getTabElementId(tabPagePrefix,tabNumber)).setAttribute('class', tabCssClasses.inactivePage);
+    };
 
-function setActiveTab(tabId) {
-    var tab = getTabElementById(tabId);
-    tab.setAttribute('class', 'tabActiveHeader');
+    var setActiveTab = function (tabNumber) {
+        var tab = document.getElementById(getTabElementId(tabHeaderPrefix,tabNumber));
+        tab.setAttribute('class', tabCssClasses.activeHeader);
 
-    document.getElementById('tabpage_' + tabId).setAttribute('class', 'tabActivePage');
-    tab.parentNode.setAttribute('data-active-tab', tabId);
-}
+        document.getElementById(getTabElementId(tabPagePrefix,tabNumber)).setAttribute('class', tabCssClasses.activePage);
+    };
 
-function displayPage() {
-    var activeTabId = this.parentNode.getAttribute('data-active-tab');
-    hideInactiveTab(activeTabId);
+    var getTabNumber = function (tabElement){
+        return tabElement.id.split('_')[1];
+    };
 
-    var tabId = getTabId(this);
-    setActiveTab(tabId);
-}
+    var getTabElementId = function(tabPrefix, tabNumber){
+        return tabPrefix + '_' + tabNumber;
+    };
 
-function getTabId(tabElement){
-    return tabElement.id.split('_')[1];
-}
+    var getActiveTab = function() {
+        var activeTab;
+        actOnAllTabs( function(tabs, currentIndex){
+            if (tabs[currentIndex].getAttribute('class') === tabCssClasses.activeHeader){
+                activeTab = tabs[currentIndex];
+            }
+        });
+        return activeTab;
+    };
 
-function getTabElementById(tabId){
-    return document.getElementById('tabHeader_' + tabId);
-}
+    var displayPage = function () {
+
+        var activeTabNumber = getTabNumber(getActiveTab());
+        hideInactiveTab(activeTabNumber);
+
+        var tabNumber = getTabNumber(this);
+        setActiveTab(tabNumber);
+    };
+};
+
+tablicious();
