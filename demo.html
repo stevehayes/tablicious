@@ -2,37 +2,92 @@
 <head>
     <title>tablicious demo - by Steve Hayes</title>
     <script type="text/javascript" src="tablicious.js"></script>
+    <link rel="stylesheet" type="text/css" href="tablicious.css"/>
+    <style type="text/css">
+        html {
+            font-family: sans-serif;
+        }
+        #tabsContainer {
+            display: block;
+            width: 600px;
+            margin-left: 10px;
+        }
+
+        #tabs {
+            list-style: none;
+            list-style-position: inside;
+            -webkit-margin-before: 0px;
+            -webkit-margin-after: 0px;
+            padding: 0px;
+            margin: 0px;
+        }
+
+        #tabs li{
+            display: inline-block;
+            width:180px;
+            text-align: center;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            margin-left: 0px;
+            margin-right: 0px;
+            cursor: hand;
+
+            border-top-right-radius: 8px;
+            border-top-left-radius: 8px;
+            -webkit-border-top-right-radius: 8px;
+            -webkit-border-top-left-radius: 8px;
+        }
+
+        .tabActiveHeader{
+            border-bottom: none;
+        }
+
+        .tabInactiveHeader{
+            background-color: #888888;
+        }
+
+        #tabsContent, .tabActiveHeader{
+            background-color: #DDDDDD;
+        }
+
+        #tabsContent {
+            padding: 10px;
+        }
+
+        #tabsContent h2{
+            margin-top: 0px;
+        }
+
+    </style>
 </head>
 <body>
-    <div id="tabContainer">
-    <div id="tabs">
-      <ul data-active-tab="1">
-        <li id="tabHeader_1" class="tabActiveHeader">Bacon 1</li>
-        <li id="tabHeader_2">Bacon 2</li>
-        <li id="tabHeader_3">Zombie 3</li>
-      </ul>
+    <div id="tabsContainer">
+        <ul data-active-tab="1" id="tabs">
+            <li id="tabHeader_1" class="tabActiveHeader">Bacon 1</li>
+            <li id="tabHeader_2">Bacon 2</li>
+            <li id="tabHeader_3">Zombie 3</li>
+        </ul>
+        <div id="tabsContent">
+          <div class="tabpage" id="tabpage_1">
+            <h2>Bacon 1</h2>
+            <p>Bacon ipsum dolor sit amet tenderloin kevin prosciutto, sirloin chuck pig swine shankle bresaola.
+                Spare ribs ball tip pork turkey pork belly pork loin frankfurter short loin. Kielbasa boudin strip steak short ribs tail filet mignon chuck turducken rump frankfurter ham cow kevin.
+                Strip steak bacon pastrami, turkey shankle brisket ball tip boudin tenderloin kevin ham flank. Bacon pork drumstick pork chop chuck, landjaeger brisket sausage
+                tenderloin fatback andouille biltong pancetta turkey ground round. Strip steak meatball hamburger beef ribs shankle, shoulder frankfurter kevin swine short ribs cow ground round venison rump. </p>
+          </div>
+          <div class="tabpage" id="tabpage_2">
+            <h2>Bacon 2</h2>
+            <p>Tail tri-tip jerky boudin shank chicken meatloaf kielbasa bacon ground round strip steak shankle andouille tongue. Doner beef ham boudin t-bone brisket cow capicola tenderloin.
+                Shank short loin jerky leberkas boudin. T-bone capicola fatback, pastrami chicken short ribs andouille
+                strip steak meatloaf shoulder sausage beef ribs venison spare ribs. Ribeye pancetta chicken jerky, flank meatloaf swine salami porchetta pastrami beef ribs ham doner. </p>
+          </div>
+          <div class="tabpage" id="tabpage_3">
+            <h2>Zombie 3</h2>
+            <p>Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris.
+                Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium. Qui animated corpse, cricket bat max brucks terribilem incessu zomby.
+                The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus. Zonbi tattered for solum oculi eorum defunctis go lum cerebro. Nescio brains an Undead zombies. Sicut malus putrid voodoo horror. Nigh tofth eliv ingdead.</p>
+          </div>
+        </div>
     </div>
-    <div id="tabsContent">
-      <div class="tabpage" id="tabpage_1" style="display: block;">
-        <h2>Bacon 1</h2>
-        <p>Bacon ipsum dolor sit amet tenderloin kevin prosciutto, sirloin chuck pig swine shankle bresaola.
-            Spare ribs ball tip pork turkey pork belly pork loin frankfurter short loin. Kielbasa boudin strip steak short ribs tail filet mignon chuck turducken rump frankfurter ham cow kevin.
-            Strip steak bacon pastrami, turkey shankle brisket ball tip boudin tenderloin kevin ham flank. Bacon pork drumstick pork chop chuck, landjaeger brisket sausage
-            tenderloin fatback andouille biltong pancetta turkey ground round. Strip steak meatball hamburger beef ribs shankle, shoulder frankfurter kevin swine short ribs cow ground round venison rump. </p>
-      </div>
-      <div class="tabpage" id="tabpage_2" style="display: none;">
-        <h2>Bacon 2</h2>
-        <p>Tail tri-tip jerky boudin shank chicken meatloaf kielbasa bacon ground round strip steak shankle andouille tongue. Doner beef ham boudin t-bone brisket cow capicola tenderloin.
-            Shank short loin jerky leberkas boudin. T-bone capicola fatback, pastrami chicken short ribs andouille
-            strip steak meatloaf shoulder sausage beef ribs venison spare ribs. Ribeye pancetta chicken jerky, flank meatloaf swine salami porchetta pastrami beef ribs ham doner. </p>
-      </div>
-      <div class="tabpage" id="tabpage_3" style="display: none;">
-        <h2>Zombie 3</h2>
-        <p>Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris.
-            Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium. Qui animated corpse, cricket bat max brucks terribilem incessu zomby.
-            The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus. Zonbi tattered for solum oculi eorum defunctis go lum cerebro. Nescio brains an Undead zombies. Sicut malus putrid voodoo horror. Nigh tofth eliv ingdead.</p>
-      </div>
-    </div>
-  </div>
 </body>
 </html>

@@ -1,0 +1,6 @@
+.tabInactivePage {
+    display: none;
+}
+.tabActivePage{
+    display: block;
+}
