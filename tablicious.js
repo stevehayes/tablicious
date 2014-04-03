@@ -12,21 +12,6 @@ var tablicious = function (options){
     tabCssClasses.activeHeader = tabCssClasses.activeHeader || 'tabActiveHeader';
     tabCssClasses.activePage = tabCssClasses.activePage || 'tabActivePage';
 
-    window.onload = function init() {
-
-        var tabContent = document.getElementById(tabContentContainerId);
-        var pages = tabContent.getElementsByTagName('div');
-
-        for (var i = 0; i < pages.length; i++) {
-            hideInactiveTab(getTabNumber(pages.item(i)));
-        }
-        setActiveTab(initialStartingTabNumber);
-
-        actOnAllTabs(function(tabs, currentIndex) {
-            tabs[currentIndex].onclick = displayPage;
-        });
-    }
-
     var actOnAllTabs = function( action ){
         var tabContainer = document.getElementById(tabHeaderContainerId);
         var tabs = tabContainer.getElementsByTagName('li');
@@ -66,13 +51,26 @@ var tablicious = function (options){
     };
 
     var displayPage = function () {
-
         var activeTabNumber = getTabNumber(getActiveTab());
         hideInactiveTab(activeTabNumber);
 
         var tabNumber = getTabNumber(this);
         setActiveTab(tabNumber);
     };
-};
 
-tablicious();
+    return {
+        initializeTabs : function () {
+            var tabContent = document.getElementById(tabContentContainerId);
+            var pages = tabContent.getElementsByTagName('div');
+
+            for (var i = 0; i < pages.length; i++) {
+                hideInactiveTab(getTabNumber(pages.item(i)));
+            }
+            setActiveTab(initialStartingTabNumber);
+
+            actOnAllTabs(function(tabs, currentIndex) {
+                tabs[currentIndex].onclick = displayPage;
+            });
+        }
+    };
+};
