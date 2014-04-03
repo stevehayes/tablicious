@@ -1,5 +1,5 @@
 window.onload = function init() {
-    var tabContainer = document.getElementById('tabsContainer');
+    var tabContainer = document.getElementById('tabs');
     var tabContent = document.getElementById('tabsContent');
     var currentTab = document.getElementById('tabHeader_1');
 
