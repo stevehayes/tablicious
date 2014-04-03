@@ -11,8 +11,53 @@
             display: block;
             width: 600px;
             margin-left: 10px;
-            background-color: silver;
         }
+
+        #tabs {
+            list-style: none;
+            list-style-position: inside;
+            -webkit-margin-before: 0px;
+            -webkit-margin-after: 0px;
+            padding: 0px;
+            margin: 0px;
+        }
+
+        #tabs li{
+            display: inline-block;
+            width:180px;
+            text-align: center;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            margin-left: 0px;
+            margin-right: 0px;
+            cursor: hand;
+
+            border-top-right-radius: 8px;
+            border-top-left-radius: 8px;
+            -webkit-border-top-right-radius: 8px;
+            -webkit-border-top-left-radius: 8px;
+        }
+
+        .tabActiveHeader{
+            border-bottom: none;
+        }
+
+        .tabInactiveHeader{
+            background-color: #888888;
+        }
+
+        #tabsContent, .tabActiveHeader{
+            background-color: #DDDDDD;
+        }
+
+        #tabsContent {
+            padding: 10px;
+        }
+
+        #tabsContent h2{
+            margin-top: 0px;
+        }
+
     </style>
 </head>
 <body>
