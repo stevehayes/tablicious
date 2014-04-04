@@ -60,11 +60,14 @@ var tablicious = function (options){
 
     return {
         initializeTabs : function () {
-            var tabContent = document.getElementById(tabContentContainerId);
-            var pages = tabContent.getElementsByTagName('div');
+            var numberOfPages = 0;
 
-            for (var i = 0; i < pages.length; i++) {
-                hideInactiveTab(getTabNumber(pages.item(i)));
+            actOnAllTabs(function (){
+                numberOfPages++;
+            });
+
+            for (var i = 1; i < numberOfPages+1; i++) {
+                hideInactiveTab(i);
             }
             setActiveTab(initialStartingTabNumber);
 
