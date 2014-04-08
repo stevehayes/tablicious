@@ -1,8 +1,7 @@
-var tablicious = function (options){
+var tablicious = function (options) {
     var opts = options || {};
     var tabCssClasses = opts.tabCssClasses || {};
     var tabHeaderContainerId = opts.tabHeaderContainerId || 'tabs';
-    var tabContentContainerId = opts.tabContentContainerId || 'tabsContent';
     var tabHeaderPrefix = opts.tabHeaderPrefix || 'tabHeader';
     var tabPagePrefix = opts.tabPagePrefix || 'tabpage';
     var initialStartingTabNumber = opts.initialStartingTabNumber || 1;
