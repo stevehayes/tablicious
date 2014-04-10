@@ -1,7 +1,7 @@
 var sampleHtml ={
     basic:  ''+
     '<div id="structureToBeTurnedIntoTabs">' +
-        '<ul id="tabs">' +
+        '<ul id="tabsHeadingContainer">' +
             '<li id="firstTabHeading" data-tab-content-id="firstPageContent">Tab 1</li>' +
             '<li id="secondTabHeading" data-tab-content-id="secondPageContent">Tab 2</li>' +
         '</ul>' +

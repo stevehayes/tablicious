@@ -1,7 +1,7 @@
 describe('rendering tabs with default settings overridden', function (){
     beforeEach( function () {
         setFixtures(sampleHtml.basic);
-        $('#structureToBeTurnedIntoTabs').tablicious({initialTabId:'secondTabHeading'});
+        $('#tabsHeadingContainer').tablicious({initialTabId:'secondTabHeading'});
     });
 
     afterEach( function (){

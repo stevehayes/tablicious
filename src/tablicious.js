@@ -1,9 +1,10 @@
 (function($){
     $.fn.tablicious = function(options){
 
+        var tabsHeadingContainer = this;
+
         var opts = options || {};
         _.defaults(opts, {
-            tabHeaderContainerId: 'tabs',
             tabCssClasses: {},
             initialTabId: null
         });
@@ -42,7 +43,7 @@
             setActiveTab(this);
         };
 
-        var tabHeadings = $('#' + opts.tabHeaderContainerId ).children();
+        var tabHeadings = tabsHeadingContainer.children();
 
         var initialTab;
         if (opts.initialTabId){

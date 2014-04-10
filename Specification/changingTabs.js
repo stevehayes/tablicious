@@ -1,7 +1,7 @@
 describe('clicking on an unselected tab', function (){
     beforeEach( function () {
         setFixtures(sampleHtml.basic);
-        $('#structureToBeTurnedIntoTabs').tablicious();
+        $('#tabsHeadingContainer').tablicious();
         $('#secondTabHeading').click();
     });
 
