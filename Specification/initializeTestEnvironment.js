@@ -1,21 +1,21 @@
 var sampleHtml ={
     basic:  ''+
-    '<div id="tabsContainer">' +
+    '<div id="structureToBeTurnedIntoTabs">' +
         '<ul id="tabs">' +
-            '<li id="tabHeader_1">Tab 1</li>' +
-            '<li id="tabHeader_2">Tab 2</li>' +
+            '<li id="firstTabHeading" data-tab-content-id="firstPageContent">Tab 1</li>' +
+            '<li id="secondTabHeading" data-tab-content-id="secondPageContent">Tab 2</li>' +
         '</ul>' +
-        '<div id="tabsContent">' +
-            '<div class="tabpage" id="tabpage_1">' +
+        '<section>' +
+            '<article id="firstPageContent">' +
                 '<h2>Tab 1</h2>' +
                 '<p>Tab 1 paragraph</p>' +
                 '<div>Tab 1 div</div>' +
-            '</div>' +
-            '<div class="tabpage" id="tabpage_2">' +
+            '</article>' +
+            '<article id="secondPageContent">' +
                 '<h2>Tab 2</h2>' +
                 '<p>Tab 2 paragraph</p>' +
                 '<div>Tab 2 div</div>' +
-            '</div>' +
-        '</div>' +
+            '</article>' +
+        '</section>' +
     '</div>'
 };

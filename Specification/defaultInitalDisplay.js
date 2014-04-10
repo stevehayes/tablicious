@@ -1,7 +1,7 @@
 describe('rendering tabs with default settings', function (){
     beforeEach( function () {
         setFixtures(sampleHtml.basic);
-        tablicious().initializeTabs();
+        $('#structureToBeTurnedIntoTabs').tablicious();
     });
 
     afterEach( function (){
@@ -9,16 +9,16 @@ describe('rendering tabs with default settings', function (){
     });
 
    it('should select only the first tab', function (){
-       expect($('#tabHeader_1')).toHaveClass('tabActiveHeader');
-       expect($('#tabHeader_2')).toHaveClass('tabInactiveHeader');
+       expect($('#firstTabHeading')).toHaveClass('tabActiveHeader');
+       expect($('#secondTabHeading')).toHaveClass('tabInactiveHeader');
    });
 
    it('should show the first tabs contents', function(){
-       expect($('#tabpage_1')).toHaveClass('tabActivePage');
+       expect($('#firstPageContent')).toHaveClass('tabActivePage');
    });
 
    it('should hide all other tabs contents', function(){
-       expect($('#tabpage_2')).toHaveClass('tabInactivePage');
+       expect($('#secondPageContent')).toHaveClass('tabInactivePage');
    });
 
 });

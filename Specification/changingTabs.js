@@ -1,8 +1,8 @@
 describe('clicking on an unselected tab', function (){
     beforeEach( function () {
         setFixtures(sampleHtml.basic);
-        tablicious().initializeTabs();
-        $('#tabHeader_2').click();
+        $('#structureToBeTurnedIntoTabs').tablicious();
+        $('#secondTabHeading').click();
     });
 
     afterEach( function (){
@@ -10,16 +10,15 @@ describe('clicking on an unselected tab', function (){
     });
 
    it('should select the clicked tab', function (){
-       expect($('#tabHeader_2')).toHaveClass('tabActiveHeader');
-       expect($('#tabHeader_1')).toHaveClass('tabInactiveHeader');
+       expect($('#secondTabHeading')).toHaveClass('tabActiveHeader');
+       expect($('#firstTabHeading')).toHaveClass('tabInactiveHeader');
    });
 
    it('should show the clicked tabs contents', function(){
-       expect($('#tabpage_2')).toHaveClass('tabActivePage');
+       expect($('#secondPageContent')).toHaveClass('tabActivePage');
    });
 
    it('should hide all other tabs contents', function(){
-       expect($('#tabpage_1')).toHaveClass('tabInactivePage');
+       expect($('#firstPageContent')).toHaveClass('tabInactivePage');
    });
-
 });
