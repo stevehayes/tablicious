@@ -19,8 +19,8 @@
             var activeTab = activeTabHeading;
             tabHeadings.each( function() {
                 setTabState(this, this.id == activeTab.id);
-            })
-        }
+            });
+        };
 
         var setTabState = function(tabHeading, isActive){
             var heading = $(tabHeading);
@@ -37,7 +37,7 @@
                 tabBody.removeClass(opts.tabCssClasses.activePage);
                 tabBody.addClass(opts.tabCssClasses.inactivePage);
             }
-        }
+        };
 
         var changeTabs = function(){
             setActiveTab(this);
@@ -54,5 +54,5 @@
         }
         setActiveTab(initialTab);
         tabHeadings.click(changeTabs);
-    }
+    };
 })( jQuery);
