@@ -15,44 +15,38 @@
             activePage : 'tabActivePage'
         });
 
-        var setActiveTab = function(activeTabHeading){
-            var activeTab = activeTabHeading;
-            tabHeadings.each( function() {
-                setTabState(this, this.id == activeTab.id);
+        var setActiveTab = function($activeTabHeading){
+            var $activeTab = $activeTabHeading;
+            $tabHeadings.each( function() {
+                setTabState(this, this.id == $activeTab.id);
             });
         };
 
         var setTabState = function(tabHeading, isActive){
-            var heading = $(tabHeading);
-            var tabBody = $( "#" + heading.data('tabContentId') );
+            var $heading = $(tabHeading);
+            var $tabBody = $( "#" + $heading.data('tabContentId') );
 
-            if(isActive){
-                heading.removeClass(opts.tabCssClasses.inactiveHeader);
-                heading.addClass(opts.tabCssClasses.activeHeader);
-                tabBody.removeClass(opts.tabCssClasses.inactivePage);
-                tabBody.addClass(opts.tabCssClasses.activePage);
-            }else{
-                heading.removeClass(opts.tabCssClasses.activeHeader);
-                heading.addClass(opts.tabCssClasses.inactiveHeader);
-                tabBody.removeClass(opts.tabCssClasses.activePage);
-                tabBody.addClass(opts.tabCssClasses.inactivePage);
-            }
+            $heading.toggleClass(opts.tabCssClasses.activeHeader, isActive);
+            $tabBody.toggleClass(opts.tabCssClasses.activePage, isActive);
+
+            $heading.toggleClass(opts.tabCssClasses.inactiveHeader, !isActive);
+            $tabBody.toggleClass(opts.tabCssClasses.inactivePage, !isActive);
         };
 
         var changeTabs = function(){
             setActiveTab(this);
         };
 
-        var tabHeadings = tabsHeadingContainer.children();
+        var $tabHeadings = tabsHeadingContainer.children();
 
-        var initialTab;
+        var $initialTab;
         if (opts.initialTabId){
-            initialTab = $('#' + opts.initialTabId )[0];
+            $initialTab = $('#' + opts.initialTabId )[0];
         }
         else{
-            initialTab = tabHeadings[0];
+            $initialTab = $tabHeadings[0];
         }
-        setActiveTab(initialTab);
-        tabHeadings.click(changeTabs);
+        setActiveTab($initialTab);
+        $tabHeadings.click(changeTabs);
     };
 })( jQuery);
