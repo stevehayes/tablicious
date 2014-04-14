@@ -18,7 +18,7 @@
         var setActiveTab = function($activeTabHeading){
             var $activeTab = $activeTabHeading;
             $tabHeadings.each( function() {
-                setTabState(this, this.id == $activeTab.id);
+                setTabState(this, this.id === $activeTab.id);
             });
         };
 
